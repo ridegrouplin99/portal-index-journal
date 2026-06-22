@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>再次遇见 · leyu 导航与索引</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fbe9d2 0%, #f5d6bd 40%, #edc4a8 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem 1rem;
+        }
+
+        .page-wrapper {
+            max-width: 1120px;
+            width: 100%;
+        }
+
+        /* 顶部导航 */
+        .top-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.6rem 1rem;
+            background: rgba(255, 245, 235, 0.7);
+            backdrop-filter: blur(4px);
+            border-radius: 60px;
+            margin-bottom: 2.8rem;
+            box-shadow: 0 4px 12px rgba(160, 100, 60, 0.08);
+        }
+
+        .top-nav .brand {
+            font-weight: 560;
+            font-size: 1.25rem;
+            letter-spacing: 0.02em;
+            color: #5b3a28;
+        }
+
+        .top-nav .brand span {
+            color: #a55d3a;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4b372c;
+            font-size: 0.95rem;
+            font-weight: 470;
+            padding: 0.3rem 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s, color 0.15s;
+        }
+
+        .nav-links a:hover {
+            color: #7b4c30;
+            border-bottom-color: #b57851;
+        }
+
+        /* hero 卡片 */
+        .hero-card {
+            background: #fffffffa;
+            backdrop-filter: blur(2px);
+            border-radius: 32px;
+            padding: 2.8rem 2.5rem;
+            margin-bottom: 2.2rem;
+            box-shadow: 0 10px 30px -8px rgba(120, 70, 40, 0.12);
+            transition: box-shadow 0.25s;
+        }
+
+        .hero-card:hover {
+            box-shadow: 0 16px 40px -10px rgba(140, 80, 45, 0.18);
+        }
+
+        .hero-title {
+            font-size: 2.2rem;
+            font-weight: 560;
+            letter-spacing: -0.01em;
+            color: #3c281e;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-title strong {
+            font-weight: 620;
+            color: #8b5439;
+        }
+
+        .hero-sub {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #4a3a30;
+            max-width: 680px;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-sub a {
+            color: #8b5439;
+            text-decoration: none;
+            font-weight: 540;
+            border-bottom: 1.5px dashed #cba58a;
+            transition: border-color 0.2s;
+        }
+
+        .hero-sub a:hover {
+            border-bottom-color: #7d4a2e;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin-top: 1rem;
+            color: #5f493b;
+            font-size: 0.92rem;
+        }
+
+        .hero-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .pill {
+            background: #efe3d7;
+            padding: 0.2rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.82rem;
+            color: #4a3428;
+        }
+
+        /* 场景模块 —— 三列卡片 */
+        .scene-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+            margin-bottom: 2.2rem;
+        }
+
+        .scene-card {
+            background: #fffffffa;
+            border-radius: 28px;
+            padding: 1.8rem 1.5rem 2rem;
+            box-shadow: 0 8px 20px -6px rgba(130, 75, 40, 0.10);
+            transition: transform 0.2s, box-shadow 0.25s;
+            border: 1px solid rgba(235, 210, 190, 0.3);
+        }
+
+        .scene-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 36px -12px rgba(120, 70, 40, 0.16);
+        }
+
+        .scene-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .scene-title {
+            font-size: 1.2rem;
+            font-weight: 570;
+            color: #3b291f;
+            letter-spacing: 0.01em;
+            margin-bottom: 0.5rem;
+        }
+
+        .scene-desc {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #4c3b30;
+        }
+
+        .scene-desc a {
+            color: #8b5439;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1.5px;
+            text-decoration-color: #dbbc9f;
+            font-weight: 520;
+        }
+
+        .scene-desc a:hover {
+            color: #6d402b;
+            text-decoration-color: #a56f4e;
+        }
+
+        /* 常见说明 / FAQ 区域 */
+        .faq-section {
+            background: #fffffffa;
+            border-radius: 32px;
+            padding: 2rem 2.5rem 2.2rem;
+            margin-bottom: 2.2rem;
+            box-shadow: 0 8px 20px -6px rgba(130, 75, 40, 0.08);
+        }
+
+        .faq-title {
+            font-size: 1.4rem;
+            font-weight: 540;
+            color: #3c281e;
+            margin-bottom: 1.2rem;
+            border-left: 5px solid #ba8868;
+            padding-left: 0.9rem;
+        }
+
+        .faq-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            margin-bottom: 1.3rem;
+        }
+
+        .faq-q {
+            font-weight: 550;
+            color: #4b3427;
+            font-size: 0.98rem;
+        }
+
+        .faq-a {
+            color: #4f3f35;
+            line-height: 1.6;
+            font-size: 0.93rem;
+            padding-left: 0.3rem;
+        }
+
+        .faq-a a {
+            color: #8b5439;
+            text-decoration: none;
+            border-bottom: 1px dotted #bf9a7e;
+        }
+
+        .faq-a a:hover {
+            border-bottom-style: solid;
+            color: #6a3f2a;
+        }
+
+        .faq-more {
+            margin-top: 0.6rem;
+            text-align: right;
+            font-size: 0.9rem;
+            color: #6b4f3e;
+        }
+
+        /* 底部轻提示 */
+        .footer-note {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #5a463a;
+            padding: 1rem 0 0.2rem;
+            opacity: 0.8;
+        }
+
+        .footer-note a {
+            color: #5a3f30;
+            text-decoration: underline wavy #ceb09a 1px;
+            text-underline-offset: 4px;
+        }
+
+        .footer-note a:hover {
+            color: #3e2b20;
+        }
+
+        /* 响应式 */
+        @media (max-width: 800px) {
+            .hero-card {
+                padding: 2rem 1.5rem;
+            }
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            .scene-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.2rem;
+            }
+            .faq-section {
+                padding: 1.6rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .top-nav {
+                flex-direction: column;
+                gap: 0.6rem;
+                padding: 0.8rem 1rem;
+                border-radius: 32px;
+            }
+            .nav-links {
+                gap: 1.2rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .scene-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-meta {
+                flex-direction: column;
+                gap: 0.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+    <!-- 顶部导航 -->
+    <nav class="top-nav">
+        <div class="brand">◈ <span>索引·leyu</span></div>
+        <div class="nav-links">
+            <a href="#">收藏夹</a>
+            <a href="#">持续关注</a>
+            <a href="#">场景备忘</a>
+            <a href="#">关于</a>
+        </div>
+    </nav>
+
+    <!-- 核心介绍 / hero -->
+    <div class="hero-card">
+        <h1 class="hero-title">再次访问 · <strong>索引与连接</strong></h1>
+        <div class="hero-sub">
+            当你想重温某个内容节点，或者想梳理曾经收藏的脉络，<a href="https://portal-index-leyu.com">leyu</a> 是一个轻量索引的锚点。
+            它并非一个门户，而更像一张折叠的备忘——帮助你从上次离开的地方继续，而不是每次都重新开始。
+        </div>
+        <div class="hero-meta">
+            <span>📎 收藏线 · 持续跟踪</span>
+            <span class="pill">知识型索引</span>
+            <span>🕊️ 回访频率: 按需</span>
+        </div>
+    </div>
+
+    <!-- 三个场景模块 -->
+    <div class="scene-grid">
+        <div class="scene-card">
+            <div class="scene-icon">📋</div>
+            <div class="scene-title">再次发现</div>
+            <div class="scene-desc">
+                当你积累了一批链接和笔记后，再次访问往往需要清晰的导航结构。
+                <a href="https://portal-index-leyu.com">leyu</a> 提供了一个整理过的索引层，
+                让回顾变得更有条理，减少在标签页中反复翻找的时间。
+            </div>
+        </div>
+        <div class="scene-card">
+            <div class="scene-icon">🔖</div>
+            <div class="scene-title">收藏惯性</div>
+            <div class="scene-desc">
+                很多有价值的内容需要反复阅读才能内化。持续关注一个索引，比每次临时搜索更高效。
+                将这个索引加入书签，下一次你打开时，上下文依然清晰，不需要重新构建心智模型。
+            </div>
+        </div>
+        <div class="scene-card">
+            <div class="scene-icon">🧩</div>
+            <div class="scene-title">场景化备忘</div>
+            <div class="scene-desc">
+                索引页可以围绕主题或场景组织：开发、阅读、工具、灵感。
+                <a href="https://portal-index-leyu.com">leyu</a> 就扮演了这样的角色——
+                它不承诺功能，只是忠实地记录你关注的资源入口，方便你在不同场景下快速定位。
+            </div>
+        </div>
+    </div>
+
+    <!-- 常见说明 / FAQ 摘要 -->
+    <div class="faq-section">
+        <div class="faq-title">❓ 关于索引与持续关注</div>
+
+        <div class="faq-item">
+            <div class="faq-q">· 为什么需要再次访问的索引？</div>
+            <div class="faq-a">
+                互联网信息流动很快，单纯的链接收藏容易失效或遗忘。一个轻量的索引页，可以定期整理并保持核心节点的可访问性。
+                <a href="https://portal-index-leyu.com">leyu</a> 正是基于这种思路——维持一个可回顾的起点。
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">· “持续关注”指的是什么？</div>
+            <div class="faq-a">
+                指的不是推送或通知，而是你主动选择定期回访的一组资源。收藏后如果能保持一个简单的索引，
+                即使几周后再回来，也能无缝衔接上次的上下文。leyu 的定位是辅助这种节奏。
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">· 这个页面本身会变化吗？</div>
+            <div class="faq-a">
+                会的。索引可以随着你的关注点逐步调整结构。与一次性访问不同，反复使用的索引应该具备适度的灵活性，
+                这也是为什么将 <a href="https://portal-index-leyu.com">leyu</a> 设计为轻量导航风格。
+            </div>
+        </div>
+
+        <div class="faq-more">
+            <span>⸻ 常见说明 · 持续迭代</span>
+        </div>
+    </div>
+
+    <!-- 底部提示 / 再次访问 -->
+    <div class="footer-note">
+        <span>◈ 从上次离开的地方继续 · </span>
+        <a href="https://portal-index-leyu.com">leyu</a>
+        <span> · 收藏索引，保持连接</span>
+    </div>
+
+</div>
+</body>
+</html>
